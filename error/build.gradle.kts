@@ -75,7 +75,7 @@ kotlin {
 
         val main by compilations.getting
 
-        val cbuffer by main.cinterops.creating {
+        val cerror by main.cinterops.creating {
             defFile(project.file("src/nativeInterop/cinterop/c-error.def"))
             compilerOpts("-I$includePath")
             includeDirs.allHeaders(includePath)

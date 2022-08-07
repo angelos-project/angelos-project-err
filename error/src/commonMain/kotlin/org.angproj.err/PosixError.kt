@@ -14,4 +14,4 @@
  */
 package org.angproj.err
 
-open class PosixError(message: String) : RuntimeException(message)
+class PosixError(message: String) : RuntimeException(message)
