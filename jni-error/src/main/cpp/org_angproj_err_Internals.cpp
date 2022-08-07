@@ -13,6 +13,7 @@
  *      Kristoffer Paulsson - initial implementation
  */
 #include <jni.h>
+#include <string.h>
 
 #include "c_error.h"
 

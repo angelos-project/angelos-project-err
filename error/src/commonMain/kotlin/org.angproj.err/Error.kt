@@ -17,7 +17,7 @@ package org.angproj.err
 @Suppress("VARIABLE_IN_SINGLETON_WITHOUT_THREAD_LOCAL")
 class Error {
     companion object {
-        private var _errNum = 0
+        /*private var _errNum = 0
         var errNum: Int
             get() = _errNum
             set(value) { _errNum = value }
@@ -25,7 +25,10 @@ class Error {
         private var _errMsg = ""
         var errMsg: String
             get() = _errMsg
-            set(value) { _errMsg = value }
+            set(value) { _errMsg = value }*/
+
+        var errNum: Int = 0
+        var errMsg: String = ""
 
         fun loadError() = Internals.getError()
     }
