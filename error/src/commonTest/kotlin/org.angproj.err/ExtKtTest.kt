@@ -14,19 +14,13 @@
  */
 package org.angproj.err
 
-@Suppress("VARIABLE_IN_SINGLETON_WITHOUT_THREAD_LOCAL")
-class Error {
-    companion object {
-        private var _errNum = 0
-        var errNum: Int
-            get() = _errNum
-            set(value) { _errNum = value }
+import kotlin.test.Test
+import kotlin.test.assertFailsWith
 
-        private var _errMsg = ""
-        var errMsg: String
-            get() = _errMsg
-            set(value) { _errMsg = value }
+class ExtKtTest {
 
-        fun loadError() = Internals.getError()
+    @Test
+    fun perror() {
+        assertFailsWith<PosixError> { perror("Stuff just happened.") }
     }
 }
