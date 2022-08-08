@@ -14,4 +14,11 @@
  */
 package org.angproj.err
 
+/**
+ * PosixError exception that is baesd on RuntimeException.
+ *
+ * @constructor
+ *
+ * @param message Complete error message to be displayed or logged.
+ */
 class PosixError(message: String) : RuntimeException(message)

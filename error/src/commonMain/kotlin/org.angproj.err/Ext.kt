@@ -14,17 +14,67 @@
  */
 package org.angproj.err
 
+/**
+ * Predicate an error if NULL, based on the return value of the POSIX function.
+ *
+ * @param msg Describing the action that may go wrong.
+ * @param predicate Lambda carrying out the POSIX operation.
+ * @receiver
+ * @return On success returns presumably a pointer as a Long.
+ */
 inline fun errorByNullPredicate(msg: String, predicate: () -> Long): Long = when (val outcome = predicate()) {
     0L -> throw AbstractError.error(msg)
     else -> outcome
 }
 
+/**
+ * Predicate an error if more than 0, based on the return value of the POSIX function.
+ *
+ * @param msg Describing the action that may go wrong.
+ * @param predicate Lambda carrying out the POSIX operation.
+ * @receiver
+ * @return On success returns the result as an Int.
+ */
 inline fun errorByPositivePredicate(msg: String, predicate: () -> Int): Int = when(val outcome = predicate()) {
     in 1..Int.MAX_VALUE -> throw AbstractError.error(msg)
     else -> outcome
 }
 
+/**
+ * Predicate an error if more than 0, based on the return value of the POSIX function.
+ *
+ * @param msg Describing the action that may go wrong.
+ * @param predicate Lambda carrying out the POSIX operation.
+ * @receiver
+ * @return On success returns the result as a Long.
+ */
+inline fun errorByPositivePredicate(msg: String, predicate: () -> Long): Long = when(val outcome = predicate()) {
+    in 1..Long.MAX_VALUE -> throw AbstractError.error(msg)
+    else -> outcome
+}
+
+/**
+ * Predicate an error if -1, based on the return value of the POSIX function.
+ *
+ * @param msg Describing the action that may go wrong.
+ * @param predicate Lambda carrying out the POSIX operation.
+ * @receiver
+ * @return On success returns the result as an Int.
+ */
 inline fun errorByMinusOnePredicate(msg: String, predicate: () -> Int): Int = when (val outcome = predicate()) {
     -1 -> throw AbstractError.error(msg)
+    else -> outcome
+}
+
+/**
+ * Predicate an error if -1, based on the return value of the POSIX function.
+ *
+ * @param msg Describing the action that may go wrong.
+ * @param predicate Lambda carrying out the POSIX operation.
+ * @receiver
+ * @return On success returns the result as a Long.
+ */
+inline fun errorByMinusOnePredicate(msg: String, predicate: () -> Long): Long = when (val outcome = predicate()) {
+    -1L -> throw AbstractError.error(msg)
     else -> outcome
 }

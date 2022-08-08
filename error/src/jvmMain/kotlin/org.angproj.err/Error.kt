@@ -14,6 +14,11 @@
  */
 package org.angproj.err
 
+/**
+ * The Kotlin/JVM receive errors and preform resets by using the JNI interface.
+ *
+ * @constructor Create empty Error
+ */
 actual class Error : AbstractError() {
     actual companion object {
         init { System.loadLibrary("jni-error") }

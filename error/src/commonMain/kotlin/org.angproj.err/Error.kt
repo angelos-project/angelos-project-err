@@ -14,14 +14,35 @@
  */
 package org.angproj.err
 
+/**
+ * Static error handling class temporary holding every error and errno to be passed
+ * from the underlying POSIX system.
+ *
+ * @constructor Create empty Error
+ */
 @Suppress("VARIABLE_IN_SINGLETON_WITHOUT_THREAD_LOCAL")
 expect class Error : AbstractError {
     companion object {
+        /**
+         * Temporarily holds the errno from POSIX.
+         */
         var errNum: Int
+
+        /**
+         * Temporarily holds the POSIX error description of the errno.
+         */
         var errMsg: String
 
+        /**
+         * Loads error values into the execution environment.
+         *
+         */
         fun load()
 
+        /**
+         * Resets the current error code in the POSIX library.
+         *
+         */
         fun reset()
     }
 }

@@ -20,6 +20,11 @@ import kotlinx.cinterop.usePinned
 import platform.posix.errno
 import platform.posix.strerror
 
+/**
+ * The Kotlin/Native receive errors and preform resets by using cinterop.
+ *
+ * @constructor Create empty Error
+ */
 @Suppress("VARIABLE_IN_SINGLETON_WITHOUT_THREAD_LOCAL")
 actual class Error : AbstractError() {
     actual companion object {
@@ -31,6 +36,8 @@ actual class Error : AbstractError() {
             errMsg.usePinned { strerror(errno)?.toKString().toString() }
         }
 
-        actual inline fun reset() { clear_error() }
+        actual inline fun reset() {
+            clear_error()
+        }
     }
 }

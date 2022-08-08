@@ -14,6 +14,12 @@
  */
 package org.angproj.err
 
+/**
+ * The Kotlin/JS implementation of the Error class never returns any errors.
+ * Only simulates to do that.
+ *
+ * @constructor Create empty Error
+ */
 actual class Error : AbstractError() {
     actual companion object {
         actual var errNum: Int = 0

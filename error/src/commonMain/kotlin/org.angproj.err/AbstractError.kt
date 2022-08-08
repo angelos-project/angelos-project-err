@@ -14,8 +14,21 @@
  */
 package org.angproj.err
 
+/**
+ * Error base class for error handling.
+ *
+ * @constructor Create empty Abstract error
+ */
 abstract class AbstractError {
     companion object {
+
+        /**
+         * Error handling after a POSIX function has been called.
+         * prepares a PosixError containing message, error description and error code.
+         *
+         * @param err Current execution message.
+         * @return PosixError exception to be thrown.
+         */
         inline fun error(err: String): PosixError {
             Error.load()
             Error.reset()

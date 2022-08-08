@@ -17,8 +17,8 @@
 
 #include "c_error.h"
 
-#ifndef _Included_org_angproj_err_Internals
-#define _Included_org_angproj_err_Internals
+#ifndef _Included_org_angproj_err_Error
+#define _Included_org_angproj_err_Error
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -26,7 +26,7 @@ extern "C" {
 static const char *JNIT_CLASS = "org/angproj/err/Error";
 
 /*
- * Class:     _Included_org_angproj_err_Internals
+ * Class:     _Included_org_angproj_err_Error
  * Method:    get_error
  * Signature: ()V
  */
@@ -42,7 +42,7 @@ static void get_error(JNIEnv * env, jclass thisClass){
 }
 
 /*
- * Class:     _Included_org_angproj_err_Internals
+ * Class:     _Included_org_angproj_err_Error
  * Method:    clear_error
  * Signature: ()V
  */
@@ -100,4 +100,4 @@ JNIEXPORT void JNICALL JNI_OnUnload(JavaVM *vm, void *reserved)
 #ifdef __cplusplus
 }
 #endif
-#endif // _Included_org_angproj_err_Internals
+#endif // _Included_org_angproj_err_Error
