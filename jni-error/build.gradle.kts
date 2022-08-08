@@ -42,7 +42,3 @@ library {
         }
     }
 }
-
-dependencies {
-    implementation(project(":c-error"))
-}

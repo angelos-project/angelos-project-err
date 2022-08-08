@@ -21,7 +21,7 @@ import platform.posix.errno
 import platform.posix.strerror
 
 /**
- * The Kotlin/Native receive errors and preform resets by using cinterop.
+ * The Kotlin/Native receive errors and perform resets by using c-interop.
  *
  * @constructor Create empty Error
  */
@@ -31,11 +31,19 @@ actual class Error : AbstractError() {
         actual var errNum: Int = 0
         actual var errMsg: String = ""
 
+        /**
+         * Load
+         *
+         */
         actual inline fun load() {
             errNum.usePinned { errno }
             errMsg.usePinned { strerror(errno)?.toKString().toString() }
         }
 
+        /**
+         * Reset
+         *
+         */
         actual inline fun reset() {
             clear_error()
         }

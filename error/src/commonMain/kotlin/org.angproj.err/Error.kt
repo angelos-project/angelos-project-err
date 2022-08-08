@@ -15,7 +15,7 @@
 package org.angproj.err
 
 /**
- * Static error handling class temporary holding every error and errno to be passed
+ * Static error handling class, temporary holding every error and errno, to be passed
  * from the underlying POSIX system.
  *
  * @constructor Create empty Error

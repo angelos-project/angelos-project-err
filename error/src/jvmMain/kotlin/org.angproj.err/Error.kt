@@ -32,8 +32,16 @@ actual class Error : AbstractError() {
         actual var errNum: Int = 0
         actual var errMsg: String = ""
 
+        /**
+         * Load
+         *
+         */
         actual fun load() { get_error() }
 
+        /**
+         * Reset
+         *
+         */
         actual fun reset() { clear_error() }
     }
 }

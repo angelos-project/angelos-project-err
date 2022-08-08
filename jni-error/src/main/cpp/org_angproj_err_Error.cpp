@@ -14,8 +14,7 @@
  */
 #include <jni.h>
 #include <string.h>
-
-#include "c_error.h"
+#include <errno.h>
 
 #ifndef _Included_org_angproj_err_Error
 #define _Included_org_angproj_err_Error

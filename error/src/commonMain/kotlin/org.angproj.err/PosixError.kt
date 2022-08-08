@@ -15,7 +15,7 @@
 package org.angproj.err
 
 /**
- * PosixError exception that is baesd on RuntimeException.
+ * PosixError exception that is based on RuntimeException.
  *
  * @constructor
  *

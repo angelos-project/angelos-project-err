@@ -25,8 +25,16 @@ actual class Error : AbstractError() {
         actual var errNum: Int = 0
         actual var errMsg: String = ""
 
+        /**
+         * Load
+         *
+         */
         actual fun load() {}
 
+        /**
+         * Reset
+         *
+         */
         actual fun reset() {}
     }
 }

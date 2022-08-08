@@ -17,10 +17,12 @@ package org.angproj.err
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
-class ExtKtTest {
+class PosixErrorTest {
 
     @Test
-    fun perror() {
-        assertFailsWith<PosixError> { perror("Stuff just happened.") }
+    fun exception() {
+        assertFailsWith<PosixError> {
+            throw PosixError("Look what happened!")
+        }
     }
 }
