@@ -14,8 +14,17 @@
  */
 package org.angproj.err
 
-fun perror(err: String) {
-    Error.loadError()
-    val exc = PosixError("$err: (${Error.errNum}) ${Error.errMsg}")
-    throw exc
+inline fun errorByNullPredicate(msg: String, predicate: () -> Long): Long = when (val outcome = predicate()) {
+    0L -> throw AbstractError.error(msg)
+    else -> outcome
+}
+
+inline fun errorByPositivePredicate(msg: String, predicate: () -> Int): Int = when(val outcome = predicate()) {
+    in 1..Int.MAX_VALUE -> throw AbstractError.error(msg)
+    else -> outcome
+}
+
+inline fun errorByMinusOnePredicate(msg: String, predicate: () -> Int): Int = when (val outcome = predicate()) {
+    -1 -> throw AbstractError.error(msg)
+    else -> outcome
 }

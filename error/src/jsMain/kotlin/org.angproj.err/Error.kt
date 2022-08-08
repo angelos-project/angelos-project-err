@@ -14,8 +14,13 @@
  */
 package org.angproj.err
 
-internal expect class Internals {
-    companion object {
-        fun getError()
+actual class Error : AbstractError() {
+    actual companion object {
+        actual var errNum: Int = 0
+        actual var errMsg: String = ""
+
+        actual fun load() {}
+
+        actual fun reset() {}
     }
 }

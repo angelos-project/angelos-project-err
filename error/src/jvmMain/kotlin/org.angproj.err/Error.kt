@@ -14,11 +14,21 @@
  */
 package org.angproj.err
 
-internal actual class Internals {
+actual class Error : AbstractError() {
     actual companion object {
-        actual fun getError() {
-            Error.errNum = 0
-            Error.errMsg = ""
-        }
+        init { System.loadLibrary("jni-error") }
+
+        @JvmStatic
+        internal external fun get_error()
+
+        @JvmStatic
+        internal external fun clear_error()
+
+        actual var errNum: Int = 0
+        actual var errMsg: String = ""
+
+        actual fun load() { get_error() }
+
+        actual fun reset() { clear_error() }
     }
 }

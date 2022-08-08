@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021-2022 by Kristoffer Paulsson <kristoffer.paulsson@talenten.se>.
+ * Copyright (c) 2022 by Kristoffer Paulsson <kristoffer.paulsson@talenten.se>.
  *
  * This software is available under the terms of the MIT license. Parts are licensed
  * under different terms if stated. The legal terms are attached to the LICENSE file
@@ -14,17 +14,12 @@
  */
 package org.angproj.err
 
-internal actual class Internals {
-    actual companion object {
-        init {
-            System.loadLibrary("jni-error") // Load underlying library via JNI.
+abstract class AbstractError {
+    companion object {
+        inline fun error(err: String): PosixError {
+            Error.load()
+            Error.reset()
+            return PosixError("$err: (${Error.errNum}) ${Error.errMsg}")
         }
-
-        actual fun getError() {
-            get_error()
-        }
-
-        @JvmStatic
-        private external fun get_error()
     }
 }

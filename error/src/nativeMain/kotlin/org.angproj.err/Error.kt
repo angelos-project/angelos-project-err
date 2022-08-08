@@ -14,18 +14,23 @@
  */
 package org.angproj.err
 
+import cerror.clear_error
 import kotlinx.cinterop.toKString
 import kotlinx.cinterop.usePinned
 import platform.posix.errno
 import platform.posix.strerror
-import cerror.clear_error
 
-internal actual class Internals {
+@Suppress("VARIABLE_IN_SINGLETON_WITHOUT_THREAD_LOCAL")
+actual class Error : AbstractError() {
     actual companion object {
-        actual fun getError() {
-            Error.errNum.usePinned { errno }
-            Error.errMsg.usePinned { strerror(errno)?.toKString().toString() }
-            clear_error()
+        actual var errNum: Int = 0
+        actual var errMsg: String = ""
+
+        actual inline fun load() {
+            errNum.usePinned { errno }
+            errMsg.usePinned { strerror(errno)?.toKString().toString() }
         }
+
+        actual inline fun reset() { clear_error() }
     }
 }

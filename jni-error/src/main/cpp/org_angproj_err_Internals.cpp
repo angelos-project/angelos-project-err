@@ -23,7 +23,7 @@
 extern "C" {
 #endif
 
-static const char *JNIT_CLASS = "org/angproj/err/Internals";
+static const char *JNIT_CLASS = "org/angproj/err/Error";
 
 /*
  * Class:     _Included_org_angproj_err_Internals
@@ -39,12 +39,20 @@ static void get_error(JNIEnv * env, jclass thisClass){
     jfieldID err_msg = (*env)->GetStaticFieldID(env, proc, "errMsg", "Ljava/lang/String;");
     (*env)->SetStaticIntField(env, proc, err_num, errno);
     (*env)->SetStaticObjectField(env, proc, err_msg, (*env)->NewStringUTF(env, strerror(errno)));
+}
 
-    clear_error();
+/*
+ * Class:     _Included_org_angproj_err_Internals
+ * Method:    clear_error
+ * Signature: ()V
+ */
+static void clear_error(JNIEnv * env, jclass thisClass){
+    errno = 0;
 }
 
 static JNINativeMethod funcs[] = {
 	{"get_error", "()V", (void *) &get_error},
+	{"clear_error", "()V", (void *) &clear_error},
 };
 
 #define CURRENT_JNI JNI_VERSION_1_6
