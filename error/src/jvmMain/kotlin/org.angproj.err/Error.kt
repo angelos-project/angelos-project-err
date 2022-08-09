@@ -24,10 +24,10 @@ actual class Error : AbstractError() {
         init { System.loadLibrary("jni-error") }
 
         @JvmStatic
-        internal external fun get_error()
+        private external fun get_error()
 
         @JvmStatic
-        internal external fun clear_error()
+        private external fun clear_error()
 
         actual var errNum: Int = 0
         actual var errMsg: String = ""

@@ -41,6 +41,9 @@ kotlin {
         (tasks[processResources] as ProcessResources).apply {
             dependsOn(":jni-error:assemble")
             from("${project(":jni-error").buildDir}/lib/main/release/stripped")
+            // For testing only.
+            dependsOn(":jni-error-test:assemble")
+            from("${project(":jni-error-test").buildDir}/lib/main/release/stripped")
         }
 
         compilations.all {

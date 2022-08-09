@@ -12,10 +12,17 @@
  * Contributors:
  *      Kristoffer Paulsson - initial implementation
  */
-rootProject.name = "angelos-project-err"
+package org.angproj.err
 
-include(":c-error")
-include(":jni-error")
-include(":error")
+import kotlin.test.Test
 
-include(":jni-error-test")
+expect class ExtKtTest : BaseError{
+    @Test
+    fun errorByNullPredicate()
+
+    /*@Test
+    fun errorByNonZeroPredicate()*/
+
+    @Test
+    fun errorByMinusOnePredicate()
+}

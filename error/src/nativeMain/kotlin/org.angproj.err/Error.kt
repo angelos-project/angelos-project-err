@@ -36,8 +36,8 @@ actual class Error : AbstractError() {
          *
          */
         actual inline fun load() {
-            errNum.usePinned { errno }
-            errMsg.usePinned { strerror(errno)?.toKString().toString() }
+            errNum = errno
+            errMsg = strerror(errno)?.toKString().toString()
         }
 
         /**
