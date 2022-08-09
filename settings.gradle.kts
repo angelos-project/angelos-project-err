@@ -17,3 +17,5 @@ rootProject.name = "angelos-project-err"
 include(":c-error")
 include(":jni-error")
 include(":error")
+
+include(":jni-error-test")

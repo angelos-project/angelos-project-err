@@ -14,17 +14,20 @@
  */
 package org.angproj.err
 
-internal actual class Internals {
-    actual companion object {
-        init {
-            System.loadLibrary("jni-error") // Load underlying library via JNI.
-        }
-
-        actual fun getError() {
-            get_error()
-        }
+/**
+ * Test class to access some POSIX functionality for testing only.
+ * Never use outside JVM testing of angelos-project-err.
+ *
+ * @constructor Create empty Test
+ */
+class TestPosix {
+    companion object {
+        init { System.loadLibrary("jni-error-test") }
 
         @JvmStatic
-        private external fun get_error()
+        external fun test_malloc(size: Long): Long
+
+        @JvmStatic
+        external fun test_close(fd: Int): Int
     }
 }

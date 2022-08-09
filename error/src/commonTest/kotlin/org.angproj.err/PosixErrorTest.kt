@@ -14,11 +14,15 @@
  */
 package org.angproj.err
 
-/**
- * PosixError exception that is based on RuntimeException.
- *
- * @constructor
- *
- * @param message Complete error message to be displayed or logged.
- */
-class PosixError(message: String) : RuntimeException(message)
+import kotlin.test.Test
+import kotlin.test.assertFailsWith
+
+class PosixErrorTest {
+
+    @Test
+    fun exception() {
+        assertFailsWith<PosixError> {
+            throw PosixError("Look what happened!")
+        }
+    }
+}

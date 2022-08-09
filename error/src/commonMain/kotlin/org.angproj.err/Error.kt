@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022 by Kristoffer Paulsson <kristoffer.paulsson@talenten.se>.
+ * Copyright (c) 2021-2022 by Kristoffer Paulsson <kristoffer.paulsson@talenten.se>.
  *
  * This software is available under the terms of the MIT license. Parts are licensed
  * under different terms if stated. The legal terms are attached to the LICENSE file
@@ -14,18 +14,35 @@
  */
 package org.angproj.err
 
-class Error {
+/**
+ * Static error handling class, temporary holding every error and errno, to be passed
+ * from the underlying POSIX system.
+ *
+ * @constructor Create empty Error
+ */
+@Suppress("VARIABLE_IN_SINGLETON_WITHOUT_THREAD_LOCAL")
+expect class Error : AbstractError {
     companion object {
-        private var _errNum = 0
+        /**
+         * Temporarily holds the errno from POSIX.
+         */
         var errNum: Int
-            get() = _errNum
-            set(value) { _errNum = value }
 
-        private var _errMsg = ""
+        /**
+         * Temporarily holds the POSIX error description of the errno.
+         */
         var errMsg: String
-            get() = _errMsg
-            set(value) { _errMsg = value }
 
-        fun loadError() = Internals.getError()
+        /**
+         * Loads error values into the execution environment.
+         *
+         */
+        fun load()
+
+        /**
+         * Resets the current error code in the POSIX library.
+         *
+         */
+        fun reset()
     }
 }

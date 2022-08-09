@@ -14,17 +14,37 @@
  */
 package org.angproj.err
 
+import cerror.clear_error
 import kotlinx.cinterop.toKString
 import kotlinx.cinterop.usePinned
 import platform.posix.errno
 import platform.posix.strerror
-import cerror.clear_error
 
-internal actual class Internals {
+/**
+ * The Kotlin/Native receive errors and perform resets by using c-interop.
+ *
+ * @constructor Create empty Error
+ */
+@Suppress("VARIABLE_IN_SINGLETON_WITHOUT_THREAD_LOCAL")
+actual class Error : AbstractError() {
     actual companion object {
-        actual fun getError() {
-            Error.errNum.usePinned { errno }
-            Error.errMsg.usePinned { strerror(errno)?.toKString().toString() }
+        actual var errNum: Int = 0
+        actual var errMsg: String = ""
+
+        /**
+         * Load
+         *
+         */
+        actual inline fun load() {
+            errNum = errno
+            errMsg = strerror(errno)?.toKString().toString()
+        }
+
+        /**
+         * Reset
+         *
+         */
+        actual inline fun reset() {
             clear_error()
         }
     }

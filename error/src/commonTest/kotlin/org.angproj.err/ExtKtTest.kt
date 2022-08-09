@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021-2022 by Kristoffer Paulsson <kristoffer.paulsson@talenten.se>.
+ * Copyright (c) 2022 by Kristoffer Paulsson <kristoffer.paulsson@talenten.se>.
  *
  * This software is available under the terms of the MIT license. Parts are licensed
  * under different terms if stated. The legal terms are attached to the LICENSE file
@@ -14,8 +14,15 @@
  */
 package org.angproj.err
 
-internal expect class Internals {
-    companion object {
-        fun getError()
-    }
+import kotlin.test.Test
+
+expect class ExtKtTest : BaseError{
+    @Test
+    fun errorByNullPredicate()
+
+    /*@Test
+    fun errorByNonZeroPredicate()*/
+
+    @Test
+    fun errorByMinusOnePredicate()
 }

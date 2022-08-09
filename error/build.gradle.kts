@@ -41,6 +41,9 @@ kotlin {
         (tasks[processResources] as ProcessResources).apply {
             dependsOn(":jni-error:assemble")
             from("${project(":jni-error").buildDir}/lib/main/release/stripped")
+            // For testing only.
+            dependsOn(":jni-error-test:assemble")
+            from("${project(":jni-error-test").buildDir}/lib/main/release/stripped")
         }
 
         compilations.all {
@@ -75,7 +78,7 @@ kotlin {
 
         val main by compilations.getting
 
-        val cbuffer by main.cinterops.creating {
+        val cerror by main.cinterops.creating {
             defFile(project.file("src/nativeInterop/cinterop/c-error.def"))
             compilerOpts("-I$includePath")
             includeDirs.allHeaders(includePath)

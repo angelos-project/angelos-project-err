@@ -13,37 +13,43 @@
  *      Kristoffer Paulsson - initial implementation
  */
 #include <jni.h>
+#include <string.h>
+#include <errno.h>
 
-#include "c_error.h"
-
-#ifndef _Included_org_angproj_err_Internals
-#define _Included_org_angproj_err_Internals
+#ifndef _Included_org_angproj_err_Error
+#define _Included_org_angproj_err_Error
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-static const char *JNIT_CLASS = "org/angproj/err/Internals";
+static const char *JNIT_CLASS = "org/angproj/err/Error";
+
+static jclass error_class = NULL;
+static jfieldID err_num = NULL;
+static jfieldID err_msg = NULL;
 
 /*
- * Class:     _Included_org_angproj_err_Internals
+ * Class:     _Included_org_angproj_err_Error
  * Method:    get_error
  * Signature: ()V
  */
 static void get_error(JNIEnv * env, jclass thisClass){
-    if (errno == 0)
-        return;
+    (*env)->SetStaticIntField(env, error_class, err_num, errno);
+    (*env)->SetStaticObjectField(env, error_class, err_msg, (*env)->NewStringUTF(env, strerror(errno)));
+}
 
-    jclass proc = (*env)->FindClass(env, "org/angproj/err/Error");
-    jfieldID err_num = (*env)->GetStaticFieldID(env, proc, "errNum", "I");
-    jfieldID err_msg = (*env)->GetStaticFieldID(env, proc, "errMsg", "Ljava/lang/String;");
-    (*env)->SetStaticIntField(env, proc, err_num, errno);
-    (*env)->SetStaticObjectField(env, proc, err_msg, (*env)->NewStringUTF(env, strerror(errno)));
-
-    clear_error();
+/*
+ * Class:     _Included_org_angproj_err_Error
+ * Method:    clear_error
+ * Signature: ()V
+ */
+static void clear_error(JNIEnv * env, jclass thisClass){
+    errno = 0;
 }
 
 static JNINativeMethod funcs[] = {
 	{"get_error", "()V", (void *) &get_error},
+	{"clear_error", "()V", (void *) &clear_error},
 };
 
 #define CURRENT_JNI JNI_VERSION_1_6
@@ -67,11 +73,23 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved)
 	if (res != 0)
 		return -1;
 
+	// PREPARE STATIC START
+    error_class = (*env)->FindClass(env, "org/angproj/err/Error");
+    err_num = (*env)->GetStaticFieldID(env, error_class, "errNum", "I");
+    err_msg = (*env)->GetStaticFieldID(env, error_class, "errMsg", "Ljava/lang/String;");
+	// PREPARE STATIC OVER
+
 	return CURRENT_JNI;
 }
 
 JNIEXPORT void JNICALL JNI_OnUnload(JavaVM *vm, void *reserved)
 {
+    // PREPARE STATIC END
+    error_class = NULL;
+    err_num = NULL;
+    err_msg = NULL;
+    // PREPARE STATIC OVER
+
 	JNIEnv *env;
 	jclass  cls;
 
@@ -91,4 +109,4 @@ JNIEXPORT void JNICALL JNI_OnUnload(JavaVM *vm, void *reserved)
 #ifdef __cplusplus
 }
 #endif
-#endif // _Included_org_angproj_err_Internals
+#endif // _Included_org_angproj_err_Error

@@ -14,11 +14,27 @@
  */
 package org.angproj.err
 
-internal actual class Internals {
+/**
+ * The Kotlin/JS implementation of the Error class never returns any errors.
+ * Only simulates to do that.
+ *
+ * @constructor Create empty Error
+ */
+actual class Error : AbstractError() {
     actual companion object {
-        actual fun getError() {
-            Error.errNum = 0
-            Error.errMsg = ""
-        }
+        actual var errNum: Int = 0
+        actual var errMsg: String = ""
+
+        /**
+         * Load
+         *
+         */
+        actual fun load() {}
+
+        /**
+         * Reset
+         *
+         */
+        actual fun reset() {}
     }
 }
