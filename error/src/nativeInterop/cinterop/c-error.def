@@ -1,5 +1,0 @@
-headers = c_error.h
-staticLibraries.osx = libc-error.a
-staticLibraries.linux = libc-error.a
-staticLibraries.mingw = c-error.lib
-package = cerror

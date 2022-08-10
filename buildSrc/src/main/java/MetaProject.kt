@@ -17,7 +17,7 @@ object MetaProject {
     /**
      * Artifact ID for MavenCentral or similar.
      */
-    const val artifact = "angelos-project-err"
+    const val artifact = "angelos-project-errno"
 
     /**
      * Group ID for MavenCentral or similar.
@@ -52,17 +52,17 @@ object MetaProject {
     /**
      * Maven scm url.
      */
-    const val mavenScmUrl = "https://github.com/angelos-project/angelos-project-err.git"
+    const val mavenScmUrl = "https://github.com/angelos-project/angelos-project-errno.git"
 
     /**
      * Maven scm connection.
      */
-    const val mavenScmConnection = "scm:git:git://github.com/angelos-project/angelos-project-err.git"
+    const val mavenScmConnection = "scm:git:git://github.com/angelos-project/angelos-project-errno.git"
 
     /**
      * Maven scm developer connection.
      */
-    const val mavenScmDeveloperConnection = "scm:git:git://github.com/angelos-project/angelos-project-err.git"
+    const val mavenScmDeveloperConnection = "scm:git:git://github.com/angelos-project/angelos-project-errno.git"
 
     /**
      * MavenCentral snapshot repository.
@@ -77,12 +77,12 @@ object MetaProject {
     /**
      * Issue management.
      */
-    const val issueManagement = "https://github.com/angelos-project/angelos-project-err/issues"
+    const val issueManagement = "https://github.com/angelos-project/angelos-project-errno/issues"
 
     /**
      * Project native repository.
      */
-    const val homeRepo = "https://github.com/angelos-project/angelos-project-err"
+    const val homeRepo = "https://github.com/angelos-project/angelos-project-errno"
 
     const val coroVersion = "1.6.3-native-mt"
     const val coroLibrary = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroVersion}"

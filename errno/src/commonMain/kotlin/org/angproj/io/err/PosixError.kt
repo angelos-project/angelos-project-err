@@ -12,10 +12,13 @@
  * Contributors:
  *      Kristoffer Paulsson - initial implementation
  */
-rootProject.name = "angelos-project-errno"
+package org.angproj.io.err
 
-include(":c-errno")
-include(":jni-errno")
-include(":errno")
-
-include(":jni-errno-test")
+/**
+ * PosixError exception that is based on RuntimeException.
+ *
+ * @constructor
+ *
+ * @param message Complete error message to be displayed or logged.
+ */
+class PosixError(message: String) : RuntimeException(message)

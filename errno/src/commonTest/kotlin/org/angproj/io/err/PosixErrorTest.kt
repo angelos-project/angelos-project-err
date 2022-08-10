@@ -12,10 +12,17 @@
  * Contributors:
  *      Kristoffer Paulsson - initial implementation
  */
-rootProject.name = "angelos-project-errno"
+package org.angproj.io.err
 
-include(":c-errno")
-include(":jni-errno")
-include(":errno")
+import kotlin.test.Test
+import kotlin.test.assertFailsWith
 
-include(":jni-errno-test")
+class PosixErrorTest {
+
+    @Test
+    fun exception() {
+        assertFailsWith<PosixError> {
+            throw PosixError("Look what happened!")
+        }
+    }
+}
