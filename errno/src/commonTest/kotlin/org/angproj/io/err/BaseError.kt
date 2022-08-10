@@ -12,10 +12,18 @@
  * Contributors:
  *      Kristoffer Paulsson - initial implementation
  */
-rootProject.name = "angelos-project-errno"
+package org.angproj.io.err
 
-include(":c-errno")
-include(":jni-errno")
-include(":errno")
+import kotlin.test.assertNotEquals
 
-include(":jni-errno-test")
+abstract class BaseError {
+    fun prepareEmpty() {
+        Error.errNum = 0
+        Error.errMsg = ""
+    }
+
+    fun assertLoaded() {
+        assertNotEquals(Error.errNum, 0)
+        assertNotEquals(Error.errMsg, "")
+    }
+}

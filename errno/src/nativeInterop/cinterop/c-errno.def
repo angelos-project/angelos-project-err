@@ -1,0 +1,5 @@
+headers = c_error.h
+staticLibraries.osx = libc-errno.a
+staticLibraries.linux = libc-errno.a
+staticLibraries.mingw = c-errno.lib
+package = cerrno
