@@ -29,6 +29,15 @@ actual class Error : AbstractError() {
         @JvmStatic
         private external fun clear_error()
 
+        @JvmStatic
+        private external fun errno_count(): Int
+
+        @JvmStatic
+        private external fun errno_code(index: Int): Int
+
+        @JvmStatic
+        private external fun errno_abbr(index: Int): String
+
         actual var errNum: Int = 0
         actual var errMsg: String = ""
 
@@ -43,5 +52,28 @@ actual class Error : AbstractError() {
          *
          */
         actual fun reset() { clear_error() }
+
+        /**
+         * Errno count
+         *
+         * @param index
+         */
+        actual fun errnoCount(): Int = errno_count()
+
+        /**
+         * Errno code
+         *
+         * @param index
+         * @return
+         */
+        actual fun errnoCode(index: Int): Int = errno_code(index)
+
+        /**
+         * Errno abbr
+         *
+         * @param index
+         * @return
+         */
+        actual fun errnoAbbr(index: Int): String = errno_abbr(index)
     }
 }

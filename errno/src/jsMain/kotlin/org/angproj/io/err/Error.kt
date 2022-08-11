@@ -36,5 +36,30 @@ actual class Error : AbstractError() {
          *
          */
         actual fun reset() {}
+
+        /**
+         * Number of ERRNO error codes totally supported.
+         *
+         * @return The total number of possible ERRNOs.
+         */
+        actual fun errnoCount(): Int = 0
+
+        /**
+         * Get the currently implemented errno code at given index.
+         * Returns 0 if there is no code are abbreviation on the current index.
+         *
+         * @param index Index to receive.
+         * @return The current implementation value.
+         */
+        actual fun errnoCode(index: Int): Int = 0
+
+        /**
+         * Get the currently implemented errno abbreviation at a given index.
+         * If 0 is returned for a given index then abbreviation will be NULL.
+         *
+         * @param index Index to receive.
+         * @return The current implementation abbreviation.
+         */
+        actual fun errnoAbbr(index: Int): String = ""
     }
 }

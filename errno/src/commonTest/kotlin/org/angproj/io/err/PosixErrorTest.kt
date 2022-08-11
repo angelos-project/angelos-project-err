@@ -22,7 +22,7 @@ class PosixErrorTest {
     @Test
     fun exception() {
         assertFailsWith<PosixError> {
-            throw PosixError("Look what happened!")
+            throw PosixError("Look what happened!", ErrName.UNKNOWN)
         }
     }
 }

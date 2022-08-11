@@ -44,5 +44,30 @@ expect class Error : AbstractError {
          *
          */
         fun reset()
+
+        /**
+         * Number of ERRNO error codes totally supported.
+         *
+         * @return The total number of possible ERRNOs.
+         */
+        fun errnoCount(): Int
+
+        /**
+         * Get the currently implemented errno code at given index.
+         * Returns 0 if there is no code are abbreviation on the current index.
+         *
+         * @param index Index to receive.
+         * @return The current implementation value.
+         */
+        fun errnoCode(index: Int): Int
+
+        /**
+         * Get the currently implemented errno abbreviation at a given index.
+         * If 0 is returned for a given index then abbreviation will be NULL.
+         *
+         * @param index Index to receive.
+         * @return The current implementation abbreviation.
+         */
+        fun errnoAbbr(index: Int): String
     }
 }

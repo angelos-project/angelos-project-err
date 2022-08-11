@@ -15,6 +15,9 @@
 package org.angproj.io.err
 
 import cerrno.clear_error
+import cerrno.errno_abbr
+import cerrno.errno_code
+import cerrno.errno_count
 import kotlinx.cinterop.toKString
 import platform.posix.errno
 import platform.posix.strerror
@@ -46,5 +49,30 @@ actual class Error : AbstractError() {
         actual inline fun reset() {
             clear_error()
         }
+
+        /**
+         * Number of ERRNO error codes totally supported.
+         *
+         * @return The total number of possible ERRNOs.
+         */
+        actual inline fun errnoCount(): Int = errno_count().toInt()
+
+        /**
+         * Get the currently implemented errno code at given index.
+         * Returns 0 if there is no code are abbreviation on the current index.
+         *
+         * @param index Index to receive.
+         * @return The current implementation value.
+         */
+        actual inline fun errnoCode(index: Int): Int = errno_code(index.toUInt()).toInt()
+
+        /**
+         * Get the currently implemented errno abbreviation at a given index.
+         * If 0 is returned for a given index then abbreviation will be NULL.
+         *
+         * @param index Index to receive.
+         * @return The current implementation abbreviation.
+         */
+        actual inline fun errnoAbbr(index: Int): String = errno_abbr(index.toUInt())?.toKString() ?: ""
     }
 }
