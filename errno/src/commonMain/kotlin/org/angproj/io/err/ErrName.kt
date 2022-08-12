@@ -111,13 +111,13 @@ enum class ErrName(val errName: String) {
         private val nameCache = mutableMapOf<ErrName, Int>()
 
         init {
-            for(num in 1..Error.errnoCount()) {
+            for(num in 0..Error.errnoCount()) {
                 val code = Error.errnoCode(num)
                 if(code != 0 && !numCache.containsKey(code)) {
                     try {
                         val abbr = valueOf(Error.errnoAbbr(num))
-                        numCache[num] = abbr
-                        nameCache[abbr] = num
+                        numCache[code] = abbr
+                        nameCache[abbr] = code
                     } catch (_: Exception) {}
                 }
             }
