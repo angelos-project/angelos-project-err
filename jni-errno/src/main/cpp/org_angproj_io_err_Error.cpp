@@ -16,6 +16,8 @@
 #include <string.h>
 #include <errno.h>
 
+#include "c_error.h"
+
 #ifndef _Included_org_angproj_io_err_Error
 #define _Included_org_angproj_io_err_Error
 #ifdef __cplusplus
@@ -43,13 +45,45 @@ static void get_error(JNIEnv * env, jclass thisClass){
  * Method:    clear_error
  * Signature: ()V
  */
-static void clear_error(JNIEnv * env, jclass thisClass){
+static void get_clear_error(JNIEnv * env, jclass thisClass){
     errno = 0;
+}
+
+/*
+ * Class:     _Included_org_angproj_err_Error
+ * Method:    errno_count
+ * Signature: ()I
+ */
+static jint get_errno_count(JNIEnv * env, jclass thisClass) {
+    return (jint) errno_count();
+}
+
+/*
+ * Class:     _Included_org_angproj_err_Error
+ * Method:    errno_code
+ * Signature: (I)I
+ */
+static jint get_errno_code(JNIEnv * env, jclass thisClass, jint index) {
+    return (jint) errno_code((unsigned int) index);
+}
+
+/*
+ * Class:     _Included_org_angproj_err_Error
+ * Method:    errno_abbr
+ * Signature: (I)Ljava/lang/String;
+ */
+static jstring get_errno_abbr(JNIEnv * env, jclass thisClass, jint index){
+    const char * abbr = errno_abbr((unsigned int) index);
+    return (*env)->NewStringUTF(env, abbr);
 }
 
 static JNINativeMethod funcs[] = {
 	{"get_error", "()V", (void *) &get_error},
 	{"clear_error", "()V", (void *) &clear_error},
+
+	{"errno_count", "()I", (void *) &get_errno_count},
+	{"errno_code", "(I)I", (void *) &get_errno_code},
+	{"errno_abbr", "(I)Ljava/lang/String;", (void *) &get_errno_abbr},
 };
 
 #define CURRENT_JNI JNI_VERSION_1_6

@@ -16,8 +16,12 @@
 #ifndef SRC_C_ERROR_H
 #define SRC_C_ERROR_H
 
-#include <errno.h>
-
 extern void clear_error();
+
+extern unsigned int errno_count();
+
+extern unsigned int errno_code(unsigned int index);
+
+extern const char * errno_abbr(unsigned int index);
 
 #endif //SRC_C_ERROR_H

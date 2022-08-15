@@ -32,7 +32,8 @@ abstract class AbstractError {
         inline fun error(err: String): PosixError {
             Error.load()
             Error.reset()
-            return PosixError("$err: (${Error.errNum}) ${Error.errMsg}")
+            val name = ErrName.codeToName(Error.errNum)
+            return PosixError("$err: (${Error.errNum}, ${name}) ${Error.errMsg}", name)
         }
     }
 }

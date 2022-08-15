@@ -20,6 +20,8 @@ import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
 actual class ExtKtTest : BaseError() {
+// JS currently don't support underlying POSIX errors.
+// May come in the future, hold out, or contribute please.
 
     @BeforeTest
     fun setUp (){
@@ -33,7 +35,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun errorByNullPredicate() {
-        assertFailsWith<PosixError> {
+        assertFailsWith<UnsupportedErrnoException> {
             errorByNullPredicate("Return NULL by zero") {
                 0
             }
@@ -61,7 +63,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun errorByMinusOnePredicate() {
-        assertFailsWith<PosixError> {
+        assertFailsWith<UnsupportedErrnoException> {
             errorByMinusOnePredicate("Return minus one") {
                 -1
             }

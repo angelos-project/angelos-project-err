@@ -15,10 +15,10 @@
 package org.angproj.io.err
 
 /**
- * PosixError exception that is based on RuntimeException.
+ * Used to tell that the underlying POSIX implementation doesn't properly support a certain ERRNO.
  *
  * @constructor
  *
- * @param message Complete error message to be displayed or logged.
+ * @param message Message describing unsupported ERRNO.
  */
-class PosixError(message: String, val errName: ErrName) : RuntimeException(message)
+class UnsupportedErrnoException(message: String) : RuntimeException(message)
