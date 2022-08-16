@@ -44,7 +44,7 @@ coverallsJacoco {
     reportSourceSets = listOf(
         File("$projectDir/errno/src/commonMain/kotlin/"),
         File("$projectDir/errno/src/jvmMain/kotlin/"),
-        File("$projectDir/error/src/jsMain/kotlin/"),
+        File("$projectDir/errno/src/jsMain/kotlin/"),
         File("$projectDir/errno/src/nativeMain/kotlin/"),
     )
 }
