@@ -42,9 +42,9 @@ coverallsJacoco {
     reportPath = "$projectDir/build/reports/kover/report.xml"
 
     reportSourceSets = listOf(
-        File("$projectDir/error/src/commonMain/kotlin/"),
-        File("$projectDir/error/src/jvmMain/kotlin/"),
-        File("$projectDir/error/src/jsMain/kotlin/"),
-        File("$projectDir/error/src/nativeMain/kotlin/"),
+        File("$projectDir/errno/src/commonMain/kotlin/"),
+        File("$projectDir/errno/src/jvmMain/kotlin/"),
+        File("$projectDir/errno/src/jsMain/kotlin/"),
+        File("$projectDir/errno/src/nativeMain/kotlin/"),
     )
 }
