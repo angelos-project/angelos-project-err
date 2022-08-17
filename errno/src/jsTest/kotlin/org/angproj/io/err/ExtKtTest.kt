@@ -48,10 +48,10 @@ actual class ExtKtTest : BaseError() {
 
     fun oneLong(): Long = 1L
 
-    /*@Test
+    @Test
     actual fun errorByNonZeroPredicate() {
-        assertFailsWith<PosixError> {
-            val value = errorByNonZeroPredicate("Return nonzero") {
+        assertFailsWith<UnsupportedErrnoException> {
+            errorByNonZeroPredicate("Return nonzero") {
                 1
             }
         }
@@ -59,7 +59,7 @@ actual class ExtKtTest : BaseError() {
         // Cheating because of JS simulation
         Error.errNum = 1
         Error.errMsg = "Error"
-    }*/
+    }
 
     @Test
     actual fun errorByMinusOnePredicate() {
@@ -73,5 +73,4 @@ actual class ExtKtTest : BaseError() {
         Error.errNum = 1
         Error.errMsg = "Error"
     }
-
 }

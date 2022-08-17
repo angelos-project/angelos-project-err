@@ -20,9 +20,9 @@ expect class ExtKtTest : BaseError {
     @Test
     fun errorByNullPredicate()
 
-    /*@Test
-    fun errorByNonZeroPredicate()*/
-
     @Test
     fun errorByMinusOnePredicate()
+
+    @Test
+    fun errorByNonZeroPredicate()
 }

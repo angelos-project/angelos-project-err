@@ -40,14 +40,14 @@ actual class ExtKtTest : BaseError() {
         }
     }
 
-    /*@Test
+    @Test
     actual fun errorByNonZeroPredicate() {
         assertFailsWith<PosixError> {
             errorByNonZeroPredicate("Close nothing") {
-                fclose(Long.MAX_VALUE.toCPointer())
+                1
             }
         }
-    }*/
+    }
 
     @Test
     actual fun errorByMinusOnePredicate() {
