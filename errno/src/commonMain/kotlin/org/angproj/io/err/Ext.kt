@@ -37,10 +37,10 @@ inline fun errorByNullPredicate(msg: String, predicate: () -> Long): Long = when
  * @receiver
  * @return On success returns the result as an Int.
  */
-/*inline fun errorByNonZeroPredicate(msg: String, predicate: () -> Int): Int = when(val outcome = predicate()) {
-    in 1..Int.MAX_VALUE -> throw AbstractError.error(msg)
+inline fun errorByNonZeroPredicate(msg: String, predicate: () -> Long): Long = when(val outcome = predicate()) {
+    in 1..Long.MAX_VALUE -> throw AbstractError.error(msg)
     else -> outcome
-}*/
+}
 
 /**
  * Predicate an error if -1, based on the return value of the POSIX function.
