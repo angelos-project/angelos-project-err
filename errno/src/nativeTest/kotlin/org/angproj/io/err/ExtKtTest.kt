@@ -48,6 +48,7 @@ actual class ExtKtTest : BaseError(){
     actual fun errorByNonZeroPredicate() {
         assertFailsWith<PosixError> {
             errorByNonZeroPredicate("Close nothing") {
+                malloc(ULong.MAX_VALUE)
                 1
             }
         }
