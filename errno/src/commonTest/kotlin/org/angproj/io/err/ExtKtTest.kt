@@ -21,8 +21,26 @@ expect class ExtKtTest : BaseError {
     fun errorByNullPredicate()
 
     @Test
+    fun testErrorByNullPredicateLong()
+
+    @Test
+    fun testErrorByNullPredicateInt()
+
+    @Test
     fun errorByMinusOnePredicate()
 
     @Test
+    fun testErrorByMinusOnePredicateLong()
+
+    @Test
+    fun testErrorByMinusOnePredicateInt()
+
+    @Test
     fun errorByNonZeroPredicate()
+
+    @Test
+    fun testErrorByNonZeroPredicateLong()
+
+    @Test
+    fun testErrorByNonZeroPredicateInt()
 }

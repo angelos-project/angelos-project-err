@@ -59,5 +59,48 @@ actual class ExtKtTest : BaseError() {
         }
     }
 
+    @Test
+    actual fun testErrorByNullPredicateLong() {
+        assertFailsWith<PosixError> {
+            errorByNullPredicate(TestPosix.test_malloc(Long.MAX_VALUE)) { it }
+        }
+    }
+
+    @Test
+    actual fun testErrorByNullPredicateInt() {
+        assertFailsWith<PosixError> {
+            errorByNullPredicate(TestPosix.test_malloc(Long.MAX_VALUE).toInt()) { it }
+        }
+    }
+
+    @Test
+    actual fun testErrorByMinusOnePredicateLong() {
+        assertFailsWith<PosixError> {
+            errorByMinusOnePredicate(TestPosix.test_close(Int.MAX_VALUE).toLong()) { it }
+        }
+    }
+
+    @Test
+    actual fun testErrorByMinusOnePredicateInt() {
+        assertFailsWith<PosixError> {
+            errorByMinusOnePredicate(TestPosix.test_close(Int.MAX_VALUE)) { it }
+        }
+    }
+
+    @Test
+    actual fun testErrorByNonZeroPredicateLong() {
+        assertFailsWith<PosixError> {
+            TestPosix.test_malloc(Long.MAX_VALUE)
+            errorByNonZeroPredicate(1L) { it }
+        }
+    }
+
+    @Test
+    actual fun testErrorByNonZeroPredicateInt() {
+        assertFailsWith<PosixError> {
+            TestPosix.test_malloc(Long.MAX_VALUE)
+            errorByNonZeroPredicate(1.toInt()) { it }
+        }
+    }
 }
 

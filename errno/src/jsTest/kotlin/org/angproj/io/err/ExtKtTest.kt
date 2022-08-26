@@ -73,4 +73,70 @@ actual class ExtKtTest : BaseError() {
         Error.errNum = 1
         Error.errMsg = "Error"
     }
+
+    @Test
+    actual fun testErrorByNullPredicateLong() {
+        assertFailsWith<UnsupportedErrnoException> {
+            errorByNullPredicate(0L) { it }
+        }
+
+        // Cheating because of JS simulation
+        Error.errNum = 1
+        Error.errMsg = "Error"
+    }
+
+    @Test
+    actual fun testErrorByNullPredicateInt() {
+        assertFailsWith<UnsupportedErrnoException> {
+            errorByNullPredicate(0) { it }
+        }
+
+        // Cheating because of JS simulation
+        Error.errNum = 1
+        Error.errMsg = "Error"
+    }
+
+    @Test
+    actual fun testErrorByMinusOnePredicateLong() {
+        assertFailsWith<UnsupportedErrnoException> {
+            errorByMinusOnePredicate(-1L) { it }
+        }
+
+        // Cheating because of JS simulation
+        Error.errNum = 1
+        Error.errMsg = "Error"
+    }
+
+    @Test
+    actual fun testErrorByMinusOnePredicateInt() {
+        assertFailsWith<UnsupportedErrnoException> {
+            errorByMinusOnePredicate(-1) { it }
+        }
+
+        // Cheating because of JS simulation
+        Error.errNum = 1
+        Error.errMsg = "Error"
+    }
+
+    @Test
+    actual fun testErrorByNonZeroPredicateLong() {
+        assertFailsWith<UnsupportedErrnoException> {
+            errorByNonZeroPredicate(1L) { it }
+        }
+
+        // Cheating because of JS simulation
+        Error.errNum = 1
+        Error.errMsg = "Error"
+    }
+
+    @Test
+    actual fun testErrorByNonZeroPredicateInt() {
+        assertFailsWith<UnsupportedErrnoException> {
+            errorByNonZeroPredicate(1) { it }
+        }
+
+        // Cheating because of JS simulation
+        Error.errNum = 1
+        Error.errMsg = "Error"
+    }
 }
