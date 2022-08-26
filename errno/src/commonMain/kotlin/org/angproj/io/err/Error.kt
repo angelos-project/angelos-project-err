@@ -17,8 +17,6 @@ package org.angproj.io.err
 /**
  * Static error handling class, temporary holding every error and errno, to be passed
  * from the underlying POSIX system.
- *
- * @constructor Create empty Error
  */
 @Suppress("VARIABLE_IN_SINGLETON_WITHOUT_THREAD_LOCAL")
 expect class Error : AbstractError {

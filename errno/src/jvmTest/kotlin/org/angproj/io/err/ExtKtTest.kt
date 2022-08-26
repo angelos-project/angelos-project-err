@@ -14,10 +14,7 @@
  */
 package org.angproj.io.err
 
-import kotlin.test.AfterTest
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertFailsWith
+import kotlin.test.*
 
 actual class ExtKtTest : BaseError() {
 
@@ -33,6 +30,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun errorByNullPredicate() {
+        assertEquals(1, errorByNullPredicate("Return NULL by zero") { 1 })
         assertFailsWith<PosixError> {
             errorByNullPredicate("Eat RAM") {
                 TestPosix.test_malloc(Long.MAX_VALUE)
@@ -42,6 +40,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun errorByNonZeroPredicate() {
+        assertEquals(0, errorByNonZeroPredicate("Return nonzero") { 0 })
         assertFailsWith<PosixError> {
             errorByNonZeroPredicate("Close nothing") {
                 TestPosix.test_malloc(Long.MAX_VALUE)
@@ -52,6 +51,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun errorByMinusOnePredicate() {
+        assertEquals(0, errorByMinusOnePredicate("Return minus one") { 0 })
         assertFailsWith<PosixError> {
             errorByMinusOnePredicate("Infinite descriptor") {
                 TestPosix.test_close(Int.MAX_VALUE)
@@ -61,6 +61,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun testErrorByNullPredicateLong() {
+        assertEquals(1L, errorByNullPredicate(1L) { it })
         assertFailsWith<PosixError> {
             errorByNullPredicate(TestPosix.test_malloc(Long.MAX_VALUE)) { it }
         }
@@ -68,6 +69,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun testErrorByNullPredicateInt() {
+        assertEquals(1, errorByNullPredicate(1.toInt()) { it })
         assertFailsWith<PosixError> {
             errorByNullPredicate(TestPosix.test_malloc(Long.MAX_VALUE).toInt()) { it }
         }
@@ -75,6 +77,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun testErrorByMinusOnePredicateLong() {
+        assertEquals(1L, errorByMinusOnePredicate(1L) { it })
         assertFailsWith<PosixError> {
             errorByMinusOnePredicate(TestPosix.test_close(Int.MAX_VALUE).toLong()) { it }
         }
@@ -82,6 +85,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun testErrorByMinusOnePredicateInt() {
+        assertEquals(0, errorByMinusOnePredicate(0.toInt()) { it })
         assertFailsWith<PosixError> {
             errorByMinusOnePredicate(TestPosix.test_close(Int.MAX_VALUE)) { it }
         }
@@ -89,6 +93,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun testErrorByNonZeroPredicateLong() {
+        assertEquals(0L, errorByNonZeroPredicate(0L) { it })
         assertFailsWith<PosixError> {
             TestPosix.test_malloc(Long.MAX_VALUE)
             errorByNonZeroPredicate(1L) { it }
@@ -97,6 +102,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun testErrorByNonZeroPredicateInt() {
+        assertEquals(0, errorByNonZeroPredicate(0.toInt()) { it })
         assertFailsWith<PosixError> {
             TestPosix.test_malloc(Long.MAX_VALUE)
             errorByNonZeroPredicate(1.toInt()) { it }

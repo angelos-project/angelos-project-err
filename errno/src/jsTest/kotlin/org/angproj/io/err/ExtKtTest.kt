@@ -14,10 +14,7 @@
  */
 package org.angproj.io.err
 
-import kotlin.test.AfterTest
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertFailsWith
+import kotlin.test.*
 
 actual class ExtKtTest : BaseError() {
 // JS currently don't support underlying POSIX errors.
@@ -35,6 +32,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun errorByNullPredicate() {
+        assertEquals(1, errorByNullPredicate("Return NULL by zero") { 1 })
         assertFailsWith<UnsupportedErrnoException> {
             errorByNullPredicate("Return NULL by zero") {
                 0
@@ -50,6 +48,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun errorByNonZeroPredicate() {
+        assertEquals(0, errorByNonZeroPredicate("Return nonzero") { 0 })
         assertFailsWith<UnsupportedErrnoException> {
             errorByNonZeroPredicate("Return nonzero") {
                 1
@@ -63,6 +62,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun errorByMinusOnePredicate() {
+        assertEquals(0, errorByMinusOnePredicate("Return minus one") { 0 })
         assertFailsWith<UnsupportedErrnoException> {
             errorByMinusOnePredicate("Return minus one") {
                 -1
@@ -76,6 +76,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun testErrorByNullPredicateLong() {
+        assertEquals(1L, errorByNullPredicate(1L) { it })
         assertFailsWith<UnsupportedErrnoException> {
             errorByNullPredicate(0L) { it }
         }
@@ -87,6 +88,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun testErrorByNullPredicateInt() {
+        assertEquals(1, errorByNullPredicate(1) { it })
         assertFailsWith<UnsupportedErrnoException> {
             errorByNullPredicate(0) { it }
         }
@@ -98,6 +100,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun testErrorByMinusOnePredicateLong() {
+        assertEquals(1L, errorByMinusOnePredicate(1L) { it })
         assertFailsWith<UnsupportedErrnoException> {
             errorByMinusOnePredicate(-1L) { it }
         }
@@ -109,6 +112,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun testErrorByMinusOnePredicateInt() {
+        assertEquals(0, errorByMinusOnePredicate(0) { it })
         assertFailsWith<UnsupportedErrnoException> {
             errorByMinusOnePredicate(-1) { it }
         }
@@ -120,6 +124,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun testErrorByNonZeroPredicateLong() {
+        assertEquals(0L, errorByNonZeroPredicate(0L) { it })
         assertFailsWith<UnsupportedErrnoException> {
             errorByNonZeroPredicate(1L) { it }
         }
@@ -131,6 +136,7 @@ actual class ExtKtTest : BaseError() {
 
     @Test
     actual fun testErrorByNonZeroPredicateInt() {
+        assertEquals(0, errorByNonZeroPredicate(0) { it })
         assertFailsWith<UnsupportedErrnoException> {
             errorByNonZeroPredicate(1) { it }
         }

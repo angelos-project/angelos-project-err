@@ -16,8 +16,6 @@ package org.angproj.io.err
 
 /**
  * Abstract base class for error handling.
- *
- * @constructor Create empty Abstract error
  */
 abstract class AbstractError {
     companion object {
